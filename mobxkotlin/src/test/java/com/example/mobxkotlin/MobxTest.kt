@@ -1,5 +1,6 @@
 package com.example.mobxkotlin
 
+import com.ivansadovyi.mobx.Action
 import com.ivansadovyi.mobx.ObservableHashMap
 import org.junit.Test
 
@@ -14,6 +15,11 @@ class MobxTest {
 	}
 
 	class TodoStore {
+
+		sealed class Actions {
+			data class AddTodoAndComplete(val todo: Todo)
+		}
+
 		val todos = ObservableHashMap<String, Todo>()
 
 		val todosCount by computed {
@@ -24,8 +30,11 @@ class MobxTest {
 			todos.values.filter { it.isCompleted }.size
 		}
 
-		fun addTodo(todo: Todo) {
-			todos.put(todo.text, todo)
+		fun addTodoAndComplete(todo: Todo) {
+			action(Actions.AddTodoAndComplete(todo)) {
+				todos[todo.text] = todo
+				todo.isCompleted = true
+			}
 		}
 	}
 
@@ -33,17 +42,16 @@ class MobxTest {
 	fun test() {
 		val store = TodoStore()
 
+		Action.listen {
+			println("Action was invoked: $it")
+		}
+
 		autorun {
 			println("Todos count = ${store.todosCount}")
 			println("Completed todos count = ${store.completedTodosCount}")
 		}
 
-		action {
-			action {
-				val todo = Todo(text = "Todo 1", isCompleted = false)
-				store.addTodo(todo)
-				store.todos.values.first().isCompleted = true
-			}
-		}
+		val todo = Todo("Todo 1", false)
+		store.addTodoAndComplete(todo)
 	}
 }
