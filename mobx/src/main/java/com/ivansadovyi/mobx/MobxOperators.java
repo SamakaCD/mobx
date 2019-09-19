@@ -17,4 +17,8 @@ public class MobxOperators {
 	public static <T> Computed<T> computed(ComputedBody<T> body) {
 		return new Computed<>(body);
 	}
+
+	public static void action(Runnable body) {
+		new Action(body);
+	}
 }
