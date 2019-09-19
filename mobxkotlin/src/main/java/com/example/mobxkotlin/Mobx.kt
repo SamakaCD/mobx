@@ -1,6 +1,5 @@
 package com.example.mobxkotlin
 
-import com.ivansadovyi.mobx.Action
 import com.ivansadovyi.mobx.Disposable
 import com.ivansadovyi.mobx.MobxOperators
 
@@ -29,5 +28,9 @@ fun <T> computed(body: () -> T): ComputedVariable<T> {
 }
 
 fun action(body: () -> Unit) {
-	Action(body)
+	MobxOperators.action(body)
+}
+
+fun action(payload: Any?, body: () -> Unit) {
+	MobxOperators.action(payload, body)
 }

@@ -21,4 +21,8 @@ public class MobxOperators {
 	public static void action(Runnable body) {
 		new Action(body);
 	}
+
+	public static void action(Object payload, Runnable body) {
+		new Action(payload, body);
+	}
 }
