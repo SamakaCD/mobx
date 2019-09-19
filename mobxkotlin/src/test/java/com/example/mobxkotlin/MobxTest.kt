@@ -38,8 +38,12 @@ class MobxTest {
 			println("Completed todos count = ${store.completedTodosCount}")
 		}
 
-		val todo = Todo(text = "Todo 1", isCompleted = false)
-		store.addTodo(todo)
-		store.todos.values.first().isCompleted = true
+		action {
+			action {
+				val todo = Todo(text = "Todo 1", isCompleted = false)
+				store.addTodo(todo)
+				store.todos.values.first().isCompleted = true
+			}
+		}
 	}
 }

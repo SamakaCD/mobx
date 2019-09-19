@@ -1,5 +1,6 @@
 package com.example.mobxkotlin
 
+import com.ivansadovyi.mobx.Action
 import com.ivansadovyi.mobx.Disposable
 import com.ivansadovyi.mobx.MobxOperators
 
@@ -25,4 +26,8 @@ fun <T> observable(value: T): TrackedObservableVariable<T> {
 
 fun <T> computed(body: () -> T): ComputedVariable<T> {
 	return ComputedVariable(body)
+}
+
+fun action(body: () -> Unit) {
+	Action(body)
 }
