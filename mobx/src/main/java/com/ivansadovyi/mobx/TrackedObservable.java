@@ -22,8 +22,10 @@ public class TrackedObservable<T> implements Observable {
 	}
 
 	public void set(T value) {
-		this.value = value;
-		notifyObservers();
+		if (this.value != value) {
+			this.value = value;
+			notifyObservers();
+		}
 	}
 
 	private void notifyObservers() {

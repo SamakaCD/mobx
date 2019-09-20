@@ -1,4 +1,4 @@
-package com.example.mobxkotlin
+package com.ivansadovyi.mobx
 
 import com.ivansadovyi.mobx.MobxOperators
 import kotlin.properties.ReadOnlyProperty

@@ -1,1 +1,1 @@
-include ':mobx', ':mobxkotlin'
+include ':mobx', ':mobxkotlin', ':example'
