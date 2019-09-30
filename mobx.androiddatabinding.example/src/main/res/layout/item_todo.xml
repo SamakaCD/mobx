@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+
+		<variable
+			name="item"
+			type="com.ivansadovyi.mobx.example.todos.Todo" />
+	</data>
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center_vertical"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="?listPreferredItemPaddingLeft"
+			android:layout_marginLeft="?listPreferredItemPaddingStart"
+			android:layout_weight="1"
+			android:text="@{item.text}"
+			android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+			tools:text="Item" />
+
+		<androidx.appcompat.widget.AppCompatImageButton
+			style="@style/Widget.AppCompat.ActionButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:onClick="@{_ -> item.remove()}"
+			app:srcCompat="@drawable/ic_delete" />
+	</LinearLayout>
+</layout>

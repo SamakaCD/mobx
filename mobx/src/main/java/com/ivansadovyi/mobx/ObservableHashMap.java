@@ -84,7 +84,7 @@ public class ObservableHashMap<K, V> extends HashMap<K, V> implements Observable
 		return super.values();
 	}
 
-	private void triggerTracker() {
+	public void triggerTracker() {
 		ObservableTracker tracker = ObservableTrackerHolder.get();
 		if (tracker != null) {
 			tracker.track(this);

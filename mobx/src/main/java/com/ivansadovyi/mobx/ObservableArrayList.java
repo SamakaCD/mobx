@@ -85,7 +85,7 @@ public class ObservableArrayList<E> extends ArrayList<E> implements Observable {
 		return super.size();
 	}
 
-	private void triggerTracker() {
+	public void triggerTracker() {
 		ObservableTracker tracker = ObservableTrackerHolder.get();
 		if (tracker != null) {
 			tracker.track(this);
