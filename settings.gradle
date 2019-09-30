@@ -1,1 +1,1 @@
-include ':mobx', ':mobxkotlin', ':example', ':mobx.androiddatabinding', ':mobx.androiddatabinding.example'
+include ':mobx', ':mobx.kotlin', ':mobx.example', ':mobx.androiddatabinding', ':mobx.androiddatabinding.example'
