@@ -1,1 +1,2 @@
-include ':mobx', ':mobx.kotlin', ':mobx.example', ':mobx.androiddatabinding', ':mobx.androiddatabinding.example'
+include ':mobx'
+rootProject.name = "mobx"
