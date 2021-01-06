@@ -41,3 +41,7 @@ fun <T> computedFunction(body: ComputedBody<T>): () -> T {
 fun <T> observableListOf(vararg elements: T): ObservableList<T> {
 	return ObservableList(*elements)
 }
+
+fun <T> observableSetOf(vararg elements: T): ObservableSet<T> {
+	return ObservableSet(*elements)
+}
