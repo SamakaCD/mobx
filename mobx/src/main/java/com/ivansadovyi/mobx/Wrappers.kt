@@ -37,3 +37,7 @@ fun <T> computedFunction(body: ComputedBody<T>): () -> T {
 		computed.value
 	}
 }
+
+fun <T> observableListOf(vararg elements: T): ObservableList<T> {
+	return ObservableList(*elements)
+}

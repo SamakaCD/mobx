@@ -14,7 +14,7 @@ class Autorun(private val body: AutorunBody) : Disposable, ObservableTracker, Ob
 		this.childObservableDisposables.forEach(Disposable::dispose)
 	}
 
-	override fun track(observable: TrackedObservable<*>) {
+	override fun track(observable: Observable) {
 		val disposable = observable.observe(this)
 		this.childObservableDisposables.add(disposable)
 	}

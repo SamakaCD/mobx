@@ -23,9 +23,9 @@ class Computed<T>(private val body: ComputedBody<T>) : ObservableTracker, Observ
 
 	private var memoizedResult: T? = null
 	private var needsRecalculation = true
-	private val childObservables = mutableSetOf<TrackedObservable<*>>()
+	private val childObservables = mutableSetOf<Observable>()
 
-	override fun track(observable: TrackedObservable<*>) {
+	override fun track(observable: Observable) {
 		observable.observe(this)
 		this.childObservables.add(observable)
 	}
