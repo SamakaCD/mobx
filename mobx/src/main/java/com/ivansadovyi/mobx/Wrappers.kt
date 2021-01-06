@@ -45,3 +45,7 @@ fun <T> observableListOf(vararg elements: T): ObservableList<T> {
 fun <T> observableSetOf(vararg elements: T): ObservableSet<T> {
 	return ObservableSet(*elements)
 }
+
+fun <K, V> observableMapOf(vararg pairs: Pair<K, V>): ObservableMap<K, V> {
+	return ObservableMap(*pairs)
+}
