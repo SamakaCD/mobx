@@ -1,8 +1,8 @@
 package com.ivansadovyi.mobx
 
 import com.nhaarman.mockitokotlin2.clearInvocations
-import com.nhaarman.mockitokotlin2.never
 import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.verifyZeroInteractions
 import org.junit.Test
 import org.mockito.Mockito.spy
 
@@ -47,6 +47,6 @@ class AutorunTest {
 		autorun.dispose()
 		observable.value++
 
-		verify(autorunBody, never()).invoke()
+		verifyZeroInteractions(autorunBody)
 	}
 }

@@ -1,8 +1,9 @@
 package com.ivansadovyi.mobx
 
 typealias WhenPredicate = () -> Boolean
+typealias WhenSideEffectCallback = () -> Unit
 
-class When(predicate: WhenPredicate, sideEffectCallback: () -> Unit) : Disposable {
+class When(predicate: WhenPredicate, sideEffectCallback: WhenSideEffectCallback) : Disposable {
 
 	private var reactionDisposable: Disposable? = null
 
@@ -10,9 +11,12 @@ class When(predicate: WhenPredicate, sideEffectCallback: () -> Unit) : Disposabl
 		this.reactionDisposable = reaction(
 			dataCallback = predicate,
 			sideEffectCallback = {
-				sideEffectCallback()
-				this.reactionDisposable?.dispose()
-			}
+				if (it) {
+					sideEffectCallback()
+					this.reactionDisposable?.dispose()
+				}
+			},
+			fireImmediately = true
 		)
 	}
 
