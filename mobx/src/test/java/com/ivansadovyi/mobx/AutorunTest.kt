@@ -1,22 +1,52 @@
 package com.ivansadovyi.mobx
 
+import com.nhaarman.mockitokotlin2.clearInvocations
+import com.nhaarman.mockitokotlin2.never
+import com.nhaarman.mockitokotlin2.verify
 import org.junit.Test
+import org.mockito.Mockito.spy
 
 class AutorunTest {
 
 	@Test
-	fun testAutorun() {
+	fun testAutorunShouldBeCalledImmediately() {
+		val autorunBody = spy { }
+		autorun(autorunBody)
+
+		verify(autorunBody).invoke()
+	}
+
+	@Test
+	fun testAutorunShouldBeCalledImmediatelyAndOnObservableChange() {
 		val observable = TrackedObservable(0)
+		val autorunBody = spy<AutorunBody> { observable.value }
+		autorun(autorunBody)
 
-		val disposable = autorun {
-			println("New observable value: ${observable.value}")
-		}
+		verify(autorunBody).invoke()
+		clearInvocations(autorunBody)
 
-		observable.value = observable.value + 1
-		observable.value = 3
+		observable.value = 1
 
-		disposable.dispose()
+		verify(autorunBody).invoke()
+	}
 
-		observable.value = 100500
+	@Test
+	fun testAutorunShouldNotBeCalledAfterDispose() {
+		val observable = TrackedObservable(0)
+		val autorunBody = spy<AutorunBody> { observable.value }
+		val autorun = autorun(autorunBody)
+
+		verify(autorunBody).invoke()
+		clearInvocations(autorunBody)
+
+		observable.value++
+
+		verify(autorunBody).invoke()
+		clearInvocations(autorunBody)
+
+		autorun.dispose()
+		observable.value++
+
+		verify(autorunBody, never()).invoke()
 	}
 }
