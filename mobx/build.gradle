@@ -3,6 +3,9 @@ plugins {
     id 'kotlin'
 }
 
+apply from: 'https://raw.githubusercontent.com/govindsa1011/maven-upload/master/bintray.gradle'
+apply from: 'https://raw.githack.com/AnkitAgrawal967/Kine/master/publish.gradle'
+
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
