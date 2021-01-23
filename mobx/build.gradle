@@ -1,11 +1,15 @@
-apply plugin: 'java-library'
-
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.google.code.findbugs:jsr305:3.0.2'
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'org.mockito:mockito-core:3.0.0'
+plugins {
+    id 'java-library'
+    id 'kotlin'
 }
 
-sourceCompatibility = "7"
-targetCompatibility = "7"
+apply from: 'https://raw.githubusercontent.com/govindsa1011/maven-upload/master/bintray.gradle'
+apply from: 'https://raw.githack.com/AnkitAgrawal967/Kine/master/publish.gradle'
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+    testImplementation 'org.mockito:mockito-core:3.7.7'
+    testImplementation 'org.mockito:mockito-inline:3.7.7'
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0'
+}
